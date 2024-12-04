@@ -14,17 +14,17 @@ def random_predict(number: int = 1) -> int:
     """
     count = 0
     predict = np.random.randint(1, 101)
-    koef = 100
+    geometric_coef = 100
 
     while number != predict:
         count += 1
-        koef = koef / 2
-        if koef < 2:
-            koef = 2
+        geometric_coef /=  2
+        if geometric_coef < 2:
+            geometric_coef = 2
         if number > predict:
-            predict = int(predict + koef/2)
+            predict = int(predict + geometric_coef/2)
         elif number < predict:
-            predict = int(predict - koef/2)
+            predict = int(predict - geometric_coef/2)
         
         print(number,predict)
 
