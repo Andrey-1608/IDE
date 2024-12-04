@@ -9,4 +9,4 @@ while chislo != num_random:
     chislo = int(chislo)
     if chislo != num_random:
         print('Не угодал\n')
-print('МОЛОДЕЦ')
+print('МОЛОДЕЦ, good')
