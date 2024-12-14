@@ -8,25 +8,32 @@ import numpy as np
 def random_predict(number: int = 1) -> int:
     """
 
-    После рандомного угадывания числа, применяем геометрическую прогрессию в сторону уменьшения.
-    Если схождение меньше 2, чтобы не менять формулу устанавливаем его равным 2 и получается что перебираем по 1.
+    После рандомного угадывания числа, находим середину между между угадонным числом и мксимумом или минимумом
+    и эту середину опять сравниваем с загадонным числом, и так в цикле
     
     """
-    count = 0
+    count = 1
     predict = np.random.randint(1, 101)
-    geometric_coef = 100
+    
+    znach_min = 0
+    znach_max = 100
 
     while number != predict:
         count += 1
-        geometric_coef /=  2
-        if geometric_coef < 2:
-            geometric_coef = 2
+        if (znach_max - znach_min) < 3:
+            predict+=1
         if number > predict:
-            predict = int(predict + geometric_coef/2)
+            znach_min = predict
+            predict = int((znach_max+predict) / 2)
+           
         elif number < predict:
-            predict = int(predict - geometric_coef/2)
+            znach_max = predict
+            predict = int((znach_min+predict) / 2)
+            
         
         print(number,predict)
+        
+        
 
     return count
 
@@ -49,6 +56,7 @@ def score_game(random_predict) -> int:
 
     score = int(np.mean(count_ls))
     print(f"Ваш алгоритм угадывает число в среднем за:{score} попыток")
+    
     return score
 
 
